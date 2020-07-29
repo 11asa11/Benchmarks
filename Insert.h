@@ -17,9 +17,15 @@ namespace Insert {
         std::forward_list<int> f_lst(size, 1);
         std::cout << "Insert at the BEGINNING" << std::endl;
 
+        // reallocate
         auto start = std::chrono::high_resolution_clock::now();
         vec.insert(vec.begin(), 9);
         auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> duration_vector_reallocate = end - start;
+
+        start = std::chrono::high_resolution_clock::now();
+        vec.insert(vec.begin(),9);
+        end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> duration_vector = end - start;
 
         start = std::chrono::high_resolution_clock::now();
@@ -33,6 +39,7 @@ namespace Insert {
         std::chrono::duration<double> duration_f_list = end - start;
 
         std::cout << "vector time: " << duration_vector.count() << std::endl;
+        std::cout << "vector time_reallocate: " << duration_vector_reallocate.count() << std::endl;
         std::cout << "list time: " << duration_list.count() << std::endl;
         std::cout << "forward_list time: " << duration_f_list.count() << std::endl;
     }
@@ -44,9 +51,15 @@ namespace Insert {
         std::forward_list<int> f_lst(size, 1);
         std::cout << "Insert at the END" << std::endl;
 
+        // reallocate
         auto start = std::chrono::high_resolution_clock::now();
         vec.push_back(9);
         auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> duration_vector_reallocate = end - start;
+
+        start = std::chrono::high_resolution_clock::now();
+        vec.push_back(9);
+        end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> duration_vector = end - start;
 
         start = std::chrono::high_resolution_clock::now();
@@ -61,6 +74,7 @@ namespace Insert {
         std::chrono::duration<double> duration_f_list = end - start;
 
         std::cout << "vector time: " << duration_vector.count() << std::endl;
+        std::cout << "vector time_reallocate: " << duration_vector_reallocate.count() << std::endl;
         std::cout << "list time: " << duration_list.count() << std::endl;
         std::cout << "forward_list time: " << duration_f_list.count() << std::endl;
     }
@@ -72,9 +86,15 @@ namespace Insert {
         std::forward_list<int> f_lst(size, 1);
         std::cout << "Insert at the MIDDLE" << std::endl;
 
+        // reallocate
         auto start = std::chrono::high_resolution_clock::now();
         vec.insert(vec.begin() + vec.size() / 2, 9);
         auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> duration_vector_reallocate = end - start;
+
+        start = std::chrono::high_resolution_clock::now();
+        vec.insert(vec.begin() + vec.size() / 2, 9);
+        end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> duration_vector = end - start;
 
         start = std::chrono::high_resolution_clock::now();
@@ -91,6 +111,7 @@ namespace Insert {
         std::chrono::duration<double> duration_f_list = end - start;
 
         std::cout << "vector time: " << duration_vector.count() << std::endl;
+        std::cout << "vector time_reallocate: " << duration_vector_reallocate.count() << std::endl;
         std::cout << "list time: " << duration_list.count() << std::endl;
         std::cout << "forward_list time: " << duration_f_list.count() << std::endl;
     }
@@ -102,6 +123,5 @@ namespace Insert {
         std::cout << std::endl;
         containers_insert_middle();
     }
-
 }
 #endif //BENCHMARKS_INSERT_H

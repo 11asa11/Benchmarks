@@ -102,7 +102,6 @@ namespace Erase {
         std::cout << std::endl;
         containers_erase_middle();
     }
-
 }
 
 #endif //BENCHMARKS_ERASE_H
