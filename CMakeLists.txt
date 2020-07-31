@@ -5,6 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_CXX_FLAGS "-O0")
 
-add_executable(Benchmarks main.cpp Insert.h Erase.h Find.h)
+add_executable(Benchmarks main.cpp Insert.h Erase.h Find.h Timer.h)
 
 
