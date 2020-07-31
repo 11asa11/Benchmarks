@@ -8,6 +8,7 @@
 #include <forward_list>
 #include <chrono>
 #include <deque>
+#include "Timer.h"
 
 namespace Insert {
 
@@ -19,37 +20,36 @@ namespace Insert {
         std::forward_list<int> f_lst(size, 1);
         std::cout << "Insert at the BEGINNING" << std::endl;
 
-        // reallocate
-        auto start = std::chrono::high_resolution_clock::now();
-        vec.insert(vec.begin(), 9);
-        auto end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_vector_reallocate = end - start;
+        {
+            Timer timer;
+            vec.insert(vec.begin(), 9);
+            std::cout << "vector time_reallocate: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        vec.insert(vec.begin(),9);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_vector = end - start;
+        {
+            Timer timer;
+            vec.insert(vec.begin(), 9);
+            std::cout << "vector time: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        deq.push_front(9);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_deque = end - start;
+        {
+            Timer timer;
+            deq.push_front(9);
+            std::cout << "deque time: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        lst.push_front(9);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_list = end - start;
+        {
+            Timer timer;
+            lst.push_front(9);
+            std::cout << "list time: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        f_lst.push_front(9);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_f_list = end - start;
+        {
+            Timer timer;
+            f_lst.push_front(9);
+            std::cout << "forward_list time: ";
+        }
 
-        std::cout << "vector time: " << duration_vector.count() << std::endl;
-        std::cout << "vector time_reallocate: " << duration_vector_reallocate.count() << std::endl;
-        std::cout << "deque time: "<<duration_deque.count()<< std::endl;
-        std::cout << "list time: " << duration_list.count() << std::endl;
-        std::cout << "forward_list time: " << duration_f_list.count() << std::endl;
     }
 
     void containers_insert_end() {
@@ -61,37 +61,36 @@ namespace Insert {
         std::cout << "Insert at the END" << std::endl;
 
         // reallocate
-        auto start = std::chrono::high_resolution_clock::now();
-        vec.push_back(9);
-        auto end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_vector_reallocate = end - start;
+        {
+            Timer timer;
+            vec.push_back(9);
+            std::cout << "vector time_reallocate: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        vec.push_back(9);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_vector = end - start;
+        {
+            Timer timer;
+            vec.push_back(9);
+            std::cout << "vector time: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        deq.push_back(9);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_deque = end - start;
+        {
+            Timer timer;
+            deq.push_back(9);
+            std::cout << "deque time: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        lst.push_back(9);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_list = end - start;
+        {
+            Timer timer;
+            lst.push_back(9);
+            std::cout << "list time: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        auto before_end = std::next(f_lst.begin(), std::distance(f_lst.begin(), f_lst.end()) - 1);
-        f_lst.insert_after(before_end, 9);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_f_list = end - start;
-
-        std::cout << "vector time: " << duration_vector.count() << std::endl;
-        std::cout << "vector time_reallocate: " << duration_vector_reallocate.count() << std::endl;
-        std::cout << "deque time: "<<duration_deque.count()<< std::endl;
-        std::cout << "list time: " << duration_list.count() << std::endl;
-        std::cout << "forward_list time: " << duration_f_list.count() << std::endl;
+        {
+            Timer timer;
+            auto before_end = std::next(f_lst.begin(), std::distance(f_lst.begin(), f_lst.end()) - 1);
+            f_lst.insert_after(before_end, 9);
+            std::cout << "forward_list time: ";
+        }
     }
 
     void containers_insert_middle() {
@@ -103,39 +102,39 @@ namespace Insert {
         std::cout << "Insert at the MIDDLE" << std::endl;
 
         // reallocate
-        auto start = std::chrono::high_resolution_clock::now();
-        vec.insert(vec.begin() + vec.size() / 2, 9);
-        auto end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_vector_reallocate = end - start;
+        {
+            Timer timer;
+            vec.insert(vec.begin() + vec.size() / 2, 9);
+            std::cout << "vector time_reallocate: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        vec.insert(vec.begin() + vec.size() / 2, 9);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_vector = end - start;
+        {
+            Timer timer;
+            vec.insert(vec.begin() + vec.size() / 2, 9);
+            std::cout << "vector time: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        deq.insert(deq.begin() + deq.size() / 2, 9);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_deque = end - start;
+        {
+            Timer timer;
+            deq.insert(deq.begin() + deq.size() / 2, 9);
+            std::cout << "deque time: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        auto it = lst.begin();
-        std::advance(it, lst.size() / 2);
-        lst.insert(it, 9);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_list = end - start;
+        {
+            Timer timer;
+            auto it = lst.begin();
+            std::advance(it, lst.size() / 2);
+            lst.insert(it, 9);
+            std::cout << "list time: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        auto before_middle = std::next(f_lst.begin(), (std::distance(f_lst.begin(), f_lst.end())) / 2);
-        f_lst.insert_after(before_middle, 9);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_f_list = end - start;
+        {
+            Timer timer;
+            auto before_middle = std::next(f_lst.begin(), (std::distance(f_lst.begin(), f_lst.end())) / 2);
+            f_lst.insert_after(before_middle, 9);
+            std::cout << "forward_list time: ";
+        }
 
-        std::cout << "vector time: " << duration_vector.count() << std::endl;
-        std::cout << "vector time_reallocate: " << duration_vector_reallocate.count() << std::endl;
-        std::cout << "deque time: "<<duration_deque.count()<< std::endl;
-        std::cout << "list time: " << duration_list.count() << std::endl;
-        std::cout << "forward_list time: " << duration_f_list.count() << std::endl;
     }
 
     void start_insert_test() {

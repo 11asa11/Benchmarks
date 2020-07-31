@@ -8,6 +8,7 @@
 #include <forward_list>
 #include <chrono>
 #include <deque>
+#include "Timer.h"
 
 namespace Erase {
 
@@ -19,30 +20,30 @@ namespace Erase {
         std::forward_list<int> f_lst(size, 1);
         std::cout << "Erase at the BEGINNING" << std::endl;
 
-        auto start = std::chrono::high_resolution_clock::now();
-        vec.erase(vec.begin());
-        auto end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_vector = end - start;
+        {
+            Timer timer;
+            vec.erase(vec.begin());
+            std::cout << "vector time: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        deq.pop_front();
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_deque = end - start;
+        {
+            Timer timer;
+            deq.pop_front();
+            std::cout << "deque time: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        lst.pop_front();
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_list = end - start;
+        {
+            Timer timer;
+            lst.pop_front();
+            std::cout << "list time: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        f_lst.pop_front();
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_f_list = end - start;
+        {
+            Timer timer;
+            f_lst.pop_front();
+            std::cout << "forward_list time: ";
+        }
 
-        std::cout << "vector time: " << duration_vector.count() << std::endl;
-        std::cout << "deque time: "<<duration_deque.count()<< std::endl;
-        std::cout << "list time: " << duration_list.count() << std::endl;
-        std::cout << "forward_list time: " << duration_f_list.count() << std::endl;
     }
 
     void containers_erase_end() {
@@ -53,31 +54,31 @@ namespace Erase {
         std::forward_list<int> f_lst(size, 1);
         std::cout << "Erase at the END" << std::endl;
 
-        auto start = std::chrono::high_resolution_clock::now();
-        vec.pop_back();
-        auto end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_vector = end - start;
+        {
+            Timer timer;
+            vec.pop_back();
+            std::cout << "vector time: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        deq.pop_back();
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_deque = end - start;
+        {
+            Timer timer;
+            deq.pop_back();
+            std::cout << "deque time: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        lst.pop_back();
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_list = end - start;
+        {
+            Timer timer;
+            lst.pop_back();
+            std::cout << "list time: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        auto before_end = std::next(f_lst.begin(), std::distance(f_lst.begin(), f_lst.end()) - 2);
-        f_lst.erase_after(before_end);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_f_list = end - start;
+        {
+            Timer timer;
+            auto before_end = std::next(f_lst.begin(), std::distance(f_lst.begin(), f_lst.end()) - 2);
+            f_lst.erase_after(before_end);
+            std::cout << "forward_list time: ";
+        }
 
-        std::cout << "vector time: " << duration_vector.count() << std::endl;
-        std::cout << "deque time: "<<duration_deque.count()<< std::endl;
-        std::cout << "list time: " << duration_list.count() << std::endl;
-        std::cout << "forward_list time: " << duration_f_list.count() << std::endl;
     }
 
     void containers_erase_middle() {
@@ -88,33 +89,33 @@ namespace Erase {
         std::forward_list<int> f_lst(size, 1);
         std::cout << "Erase at the MIDDLE" << std::endl;
 
-        auto start = std::chrono::high_resolution_clock::now();
-        vec.erase(vec.begin() + vec.size() / 2);
-        auto end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_vector = end - start;
+        {
+            Timer timer;
+            vec.erase(vec.begin() + vec.size() / 2);
+            std::cout << "vector time: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        deq.erase(deq.begin() + deq.size()/2);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_deque = end - start;
+        {
+            Timer timer;
+            deq.erase(deq.begin() + deq.size() / 2);
+            std::cout << "deque time: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        auto it = lst.begin();
-        std::advance(it, lst.size() / 2);
-        lst.erase(it);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_list = end - start;
+        {
+            Timer timer;
+            auto it = lst.begin();
+            std::advance(it, lst.size() / 2);
+            lst.erase(it);
+            std::cout << "list time: ";
+        }
 
-        start = std::chrono::high_resolution_clock::now();
-        auto before_middle = std::next(f_lst.begin(), (std::distance(f_lst.begin(), f_lst.end())) / 2);
-        f_lst.erase_after(before_middle);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_f_list = end - start;
+        {
+            Timer timer;
+            auto before_middle = std::next(f_lst.begin(), (std::distance(f_lst.begin(), f_lst.end())) / 2);
+            f_lst.erase_after(before_middle);
+            std::cout << "forward_list time: ";
+        }
 
-        std::cout << "vector time: " << duration_vector.count() << std::endl;
-        std::cout << "deque time: "<<duration_deque.count()<< std::endl;
-        std::cout << "list time: " << duration_list.count() << std::endl;
-        std::cout << "forward_list time: " << duration_f_list.count() << std::endl;
     }
 
     void start_erase_test() {

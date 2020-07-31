@@ -9,6 +9,7 @@
 #include <chrono>
 #include <algorithm>
 #include <deque>
+#include "Timer.h"
 
 namespace Find {
 
@@ -20,37 +21,37 @@ namespace Find {
         std::forward_list<int> f_lst(size, 1);
         std::cout << "Find element" << std::endl;
 
-        vec.insert(vec.begin() + vec.size() / 2, 9);
-        auto start = std::chrono::high_resolution_clock::now();
-        std::find(vec.begin(),vec.end(),9);
-        auto end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_vector = end - start;
+        {
+            vec.insert(vec.begin() + vec.size() / 2, 9);
+            Timer timer;
+            std::find(vec.begin(),vec.end(),9);
+            std::cout << "vector time: ";
+        }
 
-        deq.insert(deq.begin() + deq.size() / 2, 9);
-        start = std::chrono::high_resolution_clock::now();
-        std::find(deq.begin(),deq.end(),9);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_deque = end - start;
+        {
+            deq.insert(deq.begin() + deq.size() / 2, 9);
+            Timer timer;
+            std::find(deq.begin(),deq.end(),9);
+            std::cout << "deque time: ";
+        }
 
-        auto it = lst.begin();
-        std::advance(it, lst.size() / 2);
-        lst.insert(it, 9);
-        start = std::chrono::high_resolution_clock::now();
-        std::find(lst.begin(),lst.end(),9);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_list = end - start;
+        {
+            auto it = lst.begin();
+            std::advance(it, lst.size() / 2);
+            lst.insert(it, 9);
+            Timer timer;
+            std::find(lst.begin(),lst.end(),9);
+            std::cout << "list time: ";
+        }
 
-        auto before_middle = std::next(f_lst.begin(), (std::distance(f_lst.begin(), f_lst.end())) / 2);
-        f_lst.insert_after(before_middle, 9);
-        start = std::chrono::high_resolution_clock::now();
-        std::find(f_lst.begin(),f_lst.end(),9);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration_f_list = end - start;
+        {
+            auto before_middle = std::next(f_lst.begin(), (std::distance(f_lst.begin(), f_lst.end())) / 2);
+            f_lst.insert_after(before_middle, 9);
+            Timer timer;
+            std::find(f_lst.begin(),f_lst.end(),9);
+            std::cout << "forward_list time: ";
+        }
 
-        std::cout << "vector time: " << duration_vector.count() << std::endl;
-        std::cout << "deque time: "<< duration_deque.count()<< std::endl;
-        std::cout << "list time: " << duration_list.count() << std::endl;
-        std::cout << "forward_list time: " << duration_f_list.count() << std::endl;
     }
 
     void start_insert_test() {
