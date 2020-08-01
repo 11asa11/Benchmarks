@@ -14,10 +14,11 @@ namespace Erase_sequence {
 
     void containers_erase_begin() {
         std::size_t size = 10000000;
-        std::vector<int> vec(size, 1);
-        std::deque<int> deq(size,1);
-        std::list<int> lst(size, 1);
-        std::forward_list<int> f_lst(size, 1);
+        Product product;
+        std::vector<Product> vec(size, product);
+        std::deque<Product> deq(size,product);
+        std::list<Product> lst(size, product);
+        std::forward_list<Product> f_lst(size, product);
         std::cout << "Erase at the BEGINNING" << std::endl;
 
         {
@@ -48,10 +49,11 @@ namespace Erase_sequence {
 
     void containers_erase_end() {
         std::size_t size = 10000000;
-        std::vector<int> vec(size, 1);
-        std::deque<int> deq(size,1);
-        std::list<int> lst(size, 1);
-        std::forward_list<int> f_lst(size, 1);
+        Product product;
+        std::vector<Product> vec(size, product);
+        std::deque<Product> deq(size,product);
+        std::list<Product> lst(size, product);
+        std::forward_list<Product> f_lst(size, product);
         std::cout << "Erase at the END" << std::endl;
 
         {
@@ -83,10 +85,11 @@ namespace Erase_sequence {
 
     void containers_erase_middle() {
         std::size_t size = 10000000;
-        std::vector<int> vec(size, 1);
-        std::deque<int> deq(size,1);
-        std::list<int> lst(size, 1);
-        std::forward_list<int> f_lst(size, 1);
+        Product product;
+        std::vector<Product> vec(size, product);
+        std::deque<Product> deq(size,product);
+        std::list<Product> lst(size, product);
+        std::forward_list<Product> f_lst(size, product);
         std::cout << "Erase at the MIDDLE" << std::endl;
 
         {
