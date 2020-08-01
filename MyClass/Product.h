@@ -15,8 +15,32 @@ struct Product {
         price = prod.price;
     }
 
+    friend bool operator < (const Product& prod1, const Product& prod2);
+    friend bool operator > (const Product& prod1, const Product& prod2);
+    friend bool operator != (const Product& prod1, const Product& prod2);
     friend bool operator == (const Product& prod1, const Product& prod2);
 };
+
+bool operator < (const Product& prod1, const Product& prod2) {
+    if( prod1.id < prod2.id )
+        return true;
+    else
+        return false;
+}
+
+bool operator > (const Product& prod1, const Product& prod2) {
+    if( prod1.id > prod2.id )
+        return true;
+    else
+        return false;
+}
+
+bool operator != (const Product& prod1, const Product& prod2) {
+    if( (prod1.id == prod2.id) && (prod1.price == prod2.price) )
+        return false;
+    else
+        return true;
+}
 
 bool operator == (const Product& prod1, const Product& prod2) {
     if( (prod1.id == prod2.id) && (prod1.price == prod2.price) )
