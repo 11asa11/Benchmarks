@@ -15,6 +15,11 @@ struct Product {
         price = prod.price;
     }
 
+    Product& operator = (const Product& prod) {
+        id = prod.id;
+        price = prod.price;
+        return *this;
+    }
     friend bool operator < (const Product& prod1, const Product& prod2);
     friend bool operator > (const Product& prod1, const Product& prod2);
     friend bool operator != (const Product& prod1, const Product& prod2);
@@ -48,4 +53,14 @@ bool operator == (const Product& prod1, const Product& prod2) {
     else
         return false;
 }
+
+namespace std {
+    template<>
+    struct hash<Product> {
+        std::size_t operator() (const Product& prod) const {
+            return hash<int>()(prod.id);
+        }
+    };
+}
+
 #endif //BENCHMARKS_PRODUCT_H
