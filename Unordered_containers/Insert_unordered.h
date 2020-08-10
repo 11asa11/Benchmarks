@@ -10,8 +10,9 @@
 
 namespace Insert_unordered {
 
+    std::size_t size = 100000;
+
     void containers_insert() {
-        std::size_t size = 10000000;
         Product product;
         Product prod_ins(10,101.0);
 
@@ -22,40 +23,42 @@ namespace Insert_unordered {
         std::unordered_multimap<int,Product> un_multimap;
         std::cout << "Insert" << std::endl;
 
-
-        for(std::size_t i = 1; i <= size; i++) {
-            un_set.emplace(i,i);
-            un_map.emplace(i,product);
-            un_multiset.emplace(i,i);
-            un_multimap.emplace(i,product);
-        }
-
-        std::size_t key = size + 10;
-
         {
             Timer timer;
-            un_set.emplace(key,key);
+            for(std::size_t i = 1; i <= size; i++)
+            {
+                un_set.emplace(i,i);
+            }
             std::cout << "unordered_set time: ";
         }
         un_set.clear();
 
         {
             Timer timer;
-            un_multiset.emplace(key,key);
+            for(std::size_t i = 1; i <= size; i++)
+            {
+                un_multiset.emplace(i,i);
+            }
             std::cout << "unordered_multiset time: ";
         }
         un_multiset.clear();
 
         {
             Timer timer;
-            un_map.emplace(key,prod_ins);
+            for(std::size_t i = 1; i <= size; i++)
+            {
+                un_map.emplace(i,product);
+            }
             std::cout << "unordered_map time: ";
         }
         un_map.clear();
 
         {
             Timer timer;
-            un_multimap.emplace(key,prod_ins);
+            for(std::size_t i = 1; i <= size; i++)
+            {
+                un_multimap.emplace(i,product);
+            }
             std::cout << "unordered_multimap time: ";
         }
         un_multimap.clear();

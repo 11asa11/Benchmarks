@@ -13,8 +13,9 @@
 
 namespace Find_sequence {
 
+    std::size_t size = 100000;
+
     void containers_find() {
-        std::size_t size = 10000000;
         Product product;
         Product prod_ins(10,101.0);
         std::vector<Product> vec(size, product);
@@ -56,7 +57,7 @@ namespace Find_sequence {
 
     }
 
-    void start_insert_test() {
+    void start_find_test() {
         containers_find();
     }
 }

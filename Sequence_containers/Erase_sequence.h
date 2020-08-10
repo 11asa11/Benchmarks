@@ -12,8 +12,9 @@
 
 namespace Erase_sequence {
 
+    std::size_t size = 100000;
+
     void containers_erase_begin() {
-        std::size_t size = 10000000;
         Product product;
         std::vector<Product> vec(size, product);
         std::deque<Product> deq(size,product);
@@ -23,32 +24,44 @@ namespace Erase_sequence {
 
         {
             Timer timer;
-            vec.erase(vec.begin());
+            while(!vec.empty())
+            {
+                vec.erase(vec.begin());
+            }
+
             std::cout << "vector time: ";
         }
 
         {
             Timer timer;
-            deq.pop_front();
+            while(!deq.empty())
+            {
+                deq.pop_front();
+            }
             std::cout << "deque time: ";
         }
 
         {
             Timer timer;
-            lst.pop_front();
+            while(!lst.empty())
+            {
+                lst.pop_front();
+            }
             std::cout << "list time: ";
         }
 
         {
             Timer timer;
-            f_lst.pop_front();
+            while(!f_lst.empty())
+            {
+                f_lst.pop_front();
+            }
             std::cout << "forward_list time: ";
         }
 
     }
 
     void containers_erase_end() {
-        std::size_t size = 10000000;
         Product product;
         std::vector<Product> vec(size, product);
         std::deque<Product> deq(size,product);
@@ -58,33 +71,44 @@ namespace Erase_sequence {
 
         {
             Timer timer;
-            vec.pop_back();
+            while(!vec.empty())
+            {
+                vec.pop_back();
+            }
             std::cout << "vector time: ";
         }
 
         {
             Timer timer;
-            deq.pop_back();
+            while(!deq.empty())
+            {
+                deq.pop_back();
+            }
             std::cout << "deque time: ";
         }
 
         {
             Timer timer;
-            lst.pop_back();
+            while(!lst.empty())
+            {
+                lst.pop_back();
+            }
             std::cout << "list time: ";
         }
 
         {
             Timer timer;
-            auto before_end = std::next(f_lst.begin(), std::distance(f_lst.begin(), f_lst.end()) - 2);
-            f_lst.erase_after(before_end);
+            f_lst.reverse();
+            while(!f_lst.empty())
+            {
+                f_lst.pop_front();
+            }
             std::cout << "forward_list time: ";
         }
 
     }
 
     void containers_erase_middle() {
-        std::size_t size = 10000000;
         Product product;
         std::vector<Product> vec(size, product);
         std::deque<Product> deq(size,product);
@@ -94,28 +118,48 @@ namespace Erase_sequence {
 
         {
             Timer timer;
-            vec.erase(vec.begin() + vec.size() / 2);
+            while(!vec.empty())
+            {
+                auto middle = vec.begin()+vec.size()/2;
+                vec.erase(middle);
+            }
             std::cout << "vector time: ";
         }
 
         {
             Timer timer;
-            deq.erase(deq.begin() + deq.size() / 2);
+            while(!deq.empty())
+            {
+                auto middle = deq.begin()+deq.size()/2;
+                deq.erase(middle);
+            }
             std::cout << "deque time: ";
         }
 
         {
             Timer timer;
-            auto it = lst.begin();
-            std::advance(it, lst.size() / 2);
-            lst.erase(it);
+            while(!lst.empty())
+            {
+                auto middle = lst.begin();
+                std::advance(middle, lst.size() / 2);
+                lst.erase(middle);
+            }
             std::cout << "list time: ";
         }
 
         {
             Timer timer;
-            auto before_middle = std::next(f_lst.begin(), (std::distance(f_lst.begin(), f_lst.end())) / 2);
-            f_lst.erase_after(before_middle);
+            while(!f_lst.empty())
+            {
+                int distance = std::distance(f_lst.begin(), f_lst.end()) / 2;
+                if (distance > 0) {
+                    auto before_middle = f_lst.begin();
+                    std::advance(before_middle, --distance);
+                    f_lst.erase_after(before_middle);
+                } else {
+                    f_lst.pop_front();
+                }
+            }
             std::cout << "forward_list time: ";
         }
 

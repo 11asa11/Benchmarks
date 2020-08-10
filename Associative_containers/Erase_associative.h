@@ -10,8 +10,9 @@
 
 namespace Erase_associative {
 
+    std::size_t size = 100000;
+
     void containers_erase() {
-        std::size_t size = 10000000;
         Product product;
         Product prod_ins(10,101.0);
 
@@ -30,29 +31,36 @@ namespace Erase_associative {
             _multimap.emplace(i,product);
         }
 
-        std::size_t key = size / 2;
 
         {
             Timer timer;
-            _set.erase(Product(key,key));
+            for(std::size_t i = 1; i <= size; i++) {
+                _set.erase(Product(i,i));
+            }
             std::cout << "set time: ";
         }
 
         {
             Timer timer;
-            _multiset.erase(Product(key,key));
+            for(std::size_t i = 1; i <= size; i++) {
+                _multiset.erase(Product(i,i));
+            }
             std::cout << "multiset time: ";
         }
 
         {
             Timer timer;
-            _map.erase(key);
+            for(std::size_t i = 1; i <= size; i++) {
+                _map.erase(i);
+            }
             std::cout << "map time: ";
         }
 
         {
             Timer timer;
-            _multimap.erase(key);
+            for(std::size_t i = 1; i <= size; i++) {
+                _multimap.erase(i);
+            }
             std::cout << "multimap time: ";
         }
 

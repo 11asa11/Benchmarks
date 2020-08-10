@@ -10,8 +10,9 @@
 
 namespace Find_associative {
 
+    std::size_t size = 100000;
+
     void containers_find() {
-        std::size_t size = 10000000;
         Product product;
         Product prod_ins(10,101.0);
 
@@ -31,29 +32,35 @@ namespace Find_associative {
             _multimap.emplace(i,product);
         }
 
-        std::size_t key = size / 2;
-
         {
             Timer timer;
-            _set.find(Product(key,key));
+            for(std::size_t i = 1; i <= size; i++) {
+                _set.find(Product(i,i));
+            }
             std::cout << "set time: ";
         }
 
         {
             Timer timer;
-            _multiset.find(Product(key,key));
+            for(std::size_t i = 1; i <= size; i++) {
+                _multiset.find(Product(i,i));
+            }
             std::cout << "multiset time: ";
         }
 
         {
             Timer timer;
-            _map.find(key);
+            for(std::size_t i = 1; i <= size; i++) {
+                _map.find(i);
+            }
             std::cout << "map time: ";
         }
 
         {
             Timer timer;
-            _multimap.find(key);
+            for(std::size_t i = 1; i <= size; i++) {
+                _multimap.find(i);
+            }
             std::cout << "multimap time: ";
         }
 
