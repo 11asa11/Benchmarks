@@ -10,8 +10,9 @@
 
 namespace Find_unordered {
 
+    std::size_t size = 100000;
+
     void containers_find() {
-        std::size_t size = 10000000;
         Product product;
         Product prod_ins(10,101.0);
 
@@ -35,28 +36,36 @@ namespace Find_unordered {
         {
             std::cout << "unordered_set time: "<<std::endl;
             Timer timer;
-            un_set.find(Product(key,key));
+            for(std::size_t i = 1; i <= size; i++) {
+                un_set.find(Product(i,i));
+            }
             std::cout << "unordered_set time: ";
         }
         un_set.clear();
 
         {
             Timer timer;
-            un_multiset.find(Product(key,key));
+            for(std::size_t i = 1; i <= size; i++) {
+                un_multiset.find(Product(i,i));
+            }
             std::cout << "unordered_multiset time: ";
         }
         un_multiset.clear();
 
         {
             Timer timer;
-            un_map.find(key);
+            for(std::size_t i = 1; i <= size; i++) {
+                un_map.find(i);
+            }
             std::cout << "unordered_map time: ";
         }
         un_map.clear();
 
         {
             Timer timer;
-            un_multimap.find(key);
+            for(std::size_t i = 1; i <= size; i++) {
+                un_multimap.find(i);
+            }
             std::cout << "unordered_multimap time: ";
         }
         un_multimap.clear();

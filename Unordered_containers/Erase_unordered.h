@@ -10,8 +10,9 @@
 
 namespace Erase_unordered {
 
+    std::size_t size = 100000;
+
     void containers_erase() {
-        std::size_t size = 10000000;
         Product product;
         Product prod_ins(10,101.0);
 
@@ -34,28 +35,36 @@ namespace Erase_unordered {
 
         {
             Timer timer;
-            un_set.erase(Product(key,key));
+            for(std::size_t i = 1; i <= size; i++) {
+                un_set.erase(Product(i,i));
+            }
             std::cout << "unordered_set time: ";
         }
         un_set.clear();
 
         {
             Timer timer;
-            un_multiset.erase(Product(key,key));
+            for(std::size_t i = 1; i <= size; i++) {
+                un_multiset.erase(Product(i,i));
+            }
             std::cout << "unordered_multiset time: ";
         }
         un_multiset.clear();
 
         {
             Timer timer;
-            un_map.erase(key);
+            for(std::size_t i = 1; i <= size; i++) {
+                un_map.erase(i);
+            }
             std::cout << "unordered_map time: ";
         }
         un_map.clear();
 
         {
             Timer timer;
-            un_multimap.erase(key);
+            for(std::size_t i = 1; i <= size; i++) {
+                un_multimap.erase(i);
+            }
             std::cout << "unordered_multimap time: ";
         }
         un_multimap.clear();

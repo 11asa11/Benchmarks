@@ -10,8 +10,9 @@
 
 namespace Insert_associative {
 
+    std::size_t size = 100000;
+
     void containers_insert() {
-        std::size_t size = 10000000;
         Product product;
         Product prod_ins(10,101.0);
 
@@ -23,36 +24,39 @@ namespace Insert_associative {
         std::cout << "Insert" << std::endl;
 
 
-        for(std::size_t i = 1; i <= size; i++) {
-            _set.emplace(i,i);
-            _map.emplace(i,product);
-            _multiset.emplace(i,i);
-            _multimap.emplace(i,product);
-        }
-
-        std::size_t key = size + 10;
-
         {
             Timer timer;
-            _set.emplace(key,key);
+            for(std::size_t i = 0; i < size; i++)
+            {
+                _set.emplace(i,i);
+            }
             std::cout << "set time: ";
         }
 
         {
             Timer timer;
-            _multiset.emplace(key,key);
+            for(std::size_t i = 0; i < size; i++)
+            {
+                _multiset.emplace(i,i);
+            }
             std::cout << "multiset time: ";
         }
 
         {
             Timer timer;
-            _map.emplace(key,prod_ins);
+            for(std::size_t i = 0; i < size; i++)
+            {
+                _map.emplace(i,product);
+            }
             std::cout << "map time: ";
         }
 
         {
             Timer timer;
-            _multimap.emplace(key,prod_ins);
+            for(std::size_t i = 0; i <= size; i++)
+            {
+                _multimap.emplace(i,product);
+            }
             std::cout << "multimap time: ";
         }
 
